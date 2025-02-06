@@ -1,0 +1,10 @@
+# Base URL for UI testing
+ui:
+  base_url: "https://www.arqiva.com"
+  browser: "chrome"  # Options: chrome, firefox, edge
+  headless: true
+
+# Test Reports
+reports:
+  output_dir: "reports/"
+  html_report: "ui_report.html"
