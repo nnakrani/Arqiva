@@ -1,0 +1,27 @@
+name: CI Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      - name: Run UI Tests
+        run: pytest tests/test_ui.py --html=reports/ui_report.html
+      - name: Run API Tests
+        run: pytest tests/test_api.py --html=reports/api_report.html
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports
+          path: reports/
