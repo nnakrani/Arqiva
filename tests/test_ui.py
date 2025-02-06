@@ -15,8 +15,8 @@ def driver():
     driver.quit()
 
 def test_home_page_loads():
-    ##logger.info("Starting home page load test.")
-    ##driver = webdriver.Chrome()
+    logger.info("Starting home page load test.")
+    driver = webdriver.Chrome()
     driver.get("https://www.arqiva.com")
     
     if "Arqiva" in driver.title:
