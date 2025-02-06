@@ -4,7 +4,8 @@ It also integrates with GitHub Actions for CI/CD execution.
 The Project Structure is setup as below:
 /ui_test_framework
 - tests/
----| test_ui.py        # UI tests using Selenium
+---| test_ui.py        # UI tests using Selenium		
+---| test_api.py       # API tests
 - pages/
 ---| home_page.py      # Page Object Model for UI tests
 - config/
