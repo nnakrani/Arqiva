@@ -32,3 +32,7 @@ pip install -r requirements.txt
 pytest tests/test_ui.py --html=reports/ui_report.html
 
 - Logging will be stored in logs/test_execution.log
+
+- Run tests using:
+pytest tests/test_ui.py --html=reports/ui_report.html
+pytest tests/test_api.py --html=reports/api_report.html
