@@ -21,8 +21,8 @@ The Project Structure is setup as below:
 Steps to run/setup tests
 
 - Clone the repository running from terminal:
-git clone https://github.com/nnakrani/ui_test_framework.git
-cd ui_test_framework
+git clone https://github.com/nnakrani/Arqiva.git
+cd Arqiva
 
 - Install the dependencies:
 pip install -r requirements.txt
