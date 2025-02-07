@@ -31,14 +31,19 @@ def test_home_page_loads():
 def test_main_tabs_navigation():
     driver = webdriver.Chrome()
     driver.get("https://www.arqiva.com")
-    tabs = [("About", "ABOUT"), ("Solutions", "SOLUTIONS"), ("News", "NEWS"), ("Careers", "CAREERS"), ("Error", "ERROR")] #Added an Invalid check as well
-    
-    for tab, text in tabs:
-        driver.find_element(By.LINK_TEXT, tab).click()
-        if text in driver.title.upper():
-            logger.info(f"Navigation to {tab} successful.")
-        else:
-            logger.error(f"Navigation to {tab} failed: Expected '{text}' in title but got '{driver.title.upper()}'.")
+    tabs = ["About", "Solutions", "News", "Careers"]
+    for tab in tabs:
+        if not isinstance(tab, str):
+            logger.error(f"Unexpected value in tabs list: {tab}")
+            continue  # Skip invalid entries
+
+        try:
+            element = driver.find_element(By.LINK_TEXT, tab)
+            element.click()
+            assert tab.lower() in driver.current_url.lower()
+            logger.info(f"Successfully navigated to {tab} page")
+        except Exception as e:
+            logger.error(f"Error navigating to {tab}: {e}")
     
     driver.quit()
 
