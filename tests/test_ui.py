@@ -7,7 +7,8 @@ from utils.logger import logger
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import pytest
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 def driver():
@@ -28,15 +29,27 @@ def test_home_page_loads():
     
     driver.quit()
 
+def accept_cookies(driver):
+    try:
+        cookie_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.LINK_TEXT, "Accept All Cookies"))
+        )
+        cookie_button.click()
+        logger.info("Accepted cookies")
+    except Exception as e:
+        logger.warning(f"Cookies button not found or already accepted: {e}")
+
 def test_main_tabs_navigation():
     driver = webdriver.Chrome()
     driver.get("https://www.arqiva.com")
-    tabs = ["About", "Solutions", "News", "Careers"]
+    accept_cookies(driver)  # Handle cookies before interacting with elements
+    tabs = ["Arqiva", "Documentation", "Contact Us"]
     for tab in tabs:
+        driver.get("https://www.arqiva.com")
+        accept_cookies(driver)  # Handle cookies before interacting with elements
         if not isinstance(tab, str):
             logger.error(f"Unexpected value in tabs list: {tab}")
             continue  # Skip invalid entries
-
         try:
             element = driver.find_element(By.LINK_TEXT, tab)
             element.click()
