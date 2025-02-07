@@ -1,12 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.logger import logger
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import pytest
-import sys
-import os
-##sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 
 def driver():
     service = Service(ChromeDriverManager().install())
