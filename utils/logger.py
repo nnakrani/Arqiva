@@ -18,5 +18,6 @@ logging.basicConfig(
         logging.StreamHandler()  # Log to console
     ]
 )
+logger = logging.getLogger(__name__)
 
 
